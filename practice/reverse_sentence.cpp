@@ -30,9 +30,9 @@ int main() {
 */
 
 int main() {
-    std::string s, str;
+    std::string s, str = " ";
     while(std::cin >> s)
-        str = s + " ";
+        str += (s + " ");
     int tmp = 0;
     for(int i = 0; i < str.size(); i++) {
         if(isspace(str[i])) {
