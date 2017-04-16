@@ -6,6 +6,7 @@
 #include <iostream>
 #include <algorithm>
 
+/*
 bool string_contain(std::string &a, std::string &b) {
     sort(a.begin(), a.end());
     sort(b.begin(), b.end());
@@ -15,6 +16,17 @@ bool string_contain(std::string &a, std::string &b) {
         if((pa > a.size()) || (a[pa] > b[pb]))
             return false;
     }
+    return true;
+}
+*/
+
+bool string_contain(std::string &a, std::string &b) {
+    int hash = 0;
+    for(int i = 0; i < a.size(); i++)
+        hash |= (1 << (a[i] -'A'));
+    for(int i = 0; i < b.size(); i++)
+        if((hash & (1 << (b[i] - 'A'))) == 0)
+            return false;
     return true;
 }
 
