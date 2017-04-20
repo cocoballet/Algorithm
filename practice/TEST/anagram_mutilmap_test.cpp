@@ -35,11 +35,11 @@ int main(int argc, char *argv[]) {
 		cerr <<"ERROR happen;" << endl;
 		return -2;
 	}
-	mutilmap<string, string> ret_map;
+	pair<mutilmap<string, string>::iterator, mutilmap<string, string>::iterator> ret_pair;
 	for(set<string>::iterator s_iter = dict_set.begin(); s_iter != set.end(); ++s_iter）{
 		if(dict_map.count(*s_iter) > 1) {
-			ret_map = dict_map.equal_range(*s_iter);
-			for(multimap<string, string>::iterator iter = ret_map.first;  iter != ret_map.second; ++iter)
+			ret_pair = dict_map.equal_range(*s_iter);
+			for(multimap<string, string>::iterator iter = ret_pair.first;  iter != ret_pair.second; ++iter)
 				ret_dict << iter->second << ' ' << endl;
 		}
 	}
