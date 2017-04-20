@@ -30,18 +30,21 @@ int main(int argc, char *argv[]) {
 	dict.close();
 	dict.clear();
 	
-	ofstream ret("sort_dict");
+	ofstream ret_dict("sort_dict");
 	if(!ret.open()) {
 		cerr <<"ERROR happen;" << endl;
 		return -2;
 	}
+	mutilmap<string, string> ret_map;
 	for(set<string>::iterator s_iter = dict_set.begin(); s_iter != set.end(); ++s_iter）{
 		if(dict_map.count(*s_iter) > 1) {
-			ret << dict_map.find(*s_iter) << endl;
+			ret_map = dict_map.equal_range(*s_iter);
+			for(multimap<string, string>::iterator iter = ret_map.first;  iter != ret_map.second; ++iter)
+				ret_dict << iter->second << ' ' << endl;
 		}
 	}
-	ret.close();
-	ret.clear();
+	ret_dict.close();
+	ret_dict.clear();
 	
 	return 0;
 }
