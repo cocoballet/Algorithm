@@ -1,28 +1,41 @@
 // given String = "abc"
 // return "abc","bac","cab","bca","cba","acb"
 
-#include <string>;
-#include <iostream>;
+#include <string>
+#include <string.h>
+#include <iostream>
+#include <stdio.h>
 
 using namespace std;
 
 static int count = 0;
-static void Permutation(char[] s, int from, int to) {
+void permutation(char *str, int from, int to) {
 	if(to <= 1)
 		return;
     if(from == to) {
-        cout << s << endl;
-		++count;
+//        cout << str << endl;
+//        printf("%s\n", str);
+        for(int j = 0; j <= to; ++j)
+            cout << str[j];
+        cout << endl;
+        ++count;
 	} else {
-		for(int i=from;i<=to;i++){
-		swap(s,i,from);
-		Permutation(s,from+1,to);
-		swap(s,from,i);
+	    for(int i=from; i<=to; i++) {
+        	swap(str[i], str[from]);
+           	permutation(str, from+1, to);
+    	    swap(str[i], str[from]);
+        }
 	}
 }
 
-public static void swap(char[] s, int i, int j) {
-	char temp = s[i];
-	s[i] = s[j];
-	s[j] = temp;
+int main(int argc, char *argv[]) {
+    if(argc < 2) {
+        cout << "app & str" << endl;
+        return 1;
+    }
+    char *str = argv[1];
+    int to = strlen(str);
+    permutation(str, 0, to);
+    cout << "count is: " << count <<endl;
+    return 0;
 }
