@@ -10,7 +10,8 @@ using namespace std;
 
 static int count = 0;
 void permutation(char *str, int from, int to) {
-	if(to <= 1)
+//	if(to <= 1)
+    if(to < 1)
 		return;
     if(from == to) {
 //        cout << str << endl;
@@ -34,7 +35,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     char *str = argv[1];
-    int to = strlen(str);
+    int to = strlen(str) - 1;
     permutation(str, 0, to);
     cout << "count is: " << count <<endl;
     return 0;
